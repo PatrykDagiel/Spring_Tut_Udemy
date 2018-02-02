@@ -21,7 +21,13 @@
 
     <bean id="myCoach"
         class="spring.tutorial.spring_udemy.BaseballCoach">
+        <constructor-arg ref="myFortune"/>
     </bean>
+
+    <bean id="myFortune"
+        class="spring.tutorial.spring_udemy.HappyFortuneService">
+    </bean>
+
 
 
 </beans>
