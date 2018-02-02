@@ -15,6 +15,9 @@
 		<!--class="spring.tutorial.spring_udemy.TrackCoach">-->
 	<!--</bean>-->
 
+    <bean id="myCoach2"
+          class="spring.tutorial.spring_udemy.BasketballCoach">
+    </bean>
 
     <bean id="myCoach"
         class="spring.tutorial.spring_udemy.BaseballCoach">
