@@ -1,6 +1,17 @@
 package spring.tutorial.spring_udemy;
 
 public class TrackCoach implements Coach {
+
+    private FortuneService fortuneService;
+
+    public TrackCoach(FortuneService fortuneService) {
+        this.fortuneService = fortuneService;
+    }
+
+    public TrackCoach() {
+
+    }
+
     @Override
     public String getDailyWorkout()
     {
@@ -9,6 +20,6 @@ public class TrackCoach implements Coach {
 
     @Override
     public String getDailyFortune() {
-        return "Tracky";
+        return "Tracky " + fortuneService.getFortune();
     }
 }

@@ -15,16 +15,17 @@
 		<!--class="spring.tutorial.spring_udemy.TrackCoach">-->
 	<!--</bean>-->
 
-    <bean id="myCoach2"
+    <bean id="myCoachBasket"
           class="spring.tutorial.spring_udemy.BasketballCoach">
+         <property name="fortuneService" ref="myFortuneService"></property>
     </bean>
 
     <bean id="myCoach"
-        class="spring.tutorial.spring_udemy.BaseballCoach">
-        <constructor-arg ref="myFortune"/>
+        class="spring.tutorial.spring_udemy.TrackCoach">
+        <constructor-arg ref="myFortuneService"/>
     </bean>
 
-    <bean id="myFortune"
+    <bean id="myFortuneService"
         class="spring.tutorial.spring_udemy.HappyFortuneService">
     </bean>
 
