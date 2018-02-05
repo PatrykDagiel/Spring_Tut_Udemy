@@ -4,6 +4,9 @@ public class BasketballCoach implements Coach {
 
     private FortuneService fortuneService;
 
+    private String emailAddress;
+    private String team;
+
     public BasketballCoach() {
         System.out.println("Basketball Coach default (no-arg) constructor");
     }
@@ -24,5 +27,22 @@ public class BasketballCoach implements Coach {
     }
 
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        System.out.println("This is basketball Email setter method");
+        this.emailAddress = emailAddress;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        System.out.println("This is basketball Team setter method");
+        this.team = team;
+    }
 }
 
