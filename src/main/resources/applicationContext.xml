@@ -29,7 +29,7 @@
     </bean>
 
     <bean id="myFortuneService"
-        class="spring.tutorial.spring_udemy.HappyFortuneService">
+        class="spring.tutorial.spring_udemy.RandomFortuneService">
     </bean>
 
 
