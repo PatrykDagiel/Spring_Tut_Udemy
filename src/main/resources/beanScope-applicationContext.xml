@@ -15,7 +15,8 @@
 	<!--</bean>-->
 
     <bean id="myCoach"
-        class="spring.tutorial.spring_udemy.TrackCoach">
+        class="spring.tutorial.spring_udemy.TrackCoach"
+        scope="prototype">
         <constructor-arg ref="myFortuneService"/>
     </bean>
 
