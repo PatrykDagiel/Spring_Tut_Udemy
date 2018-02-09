@@ -16,7 +16,8 @@
 	<!--</bean>-->
 
     <bean id="myCoachBasket"
-          class="spring.tutorial.spring_udemy.BasketballCoach">
+          class="spring.tutorial.spring_udemy.BasketballCoach"
+         scope="prototype">
          <property name="fortuneService" ref="myFortuneService"></property>
         <!-- inject literal values -->
         <property name="emailAddress" value="${foo.email}" />
