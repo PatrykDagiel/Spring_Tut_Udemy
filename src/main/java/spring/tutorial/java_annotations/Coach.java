@@ -1,0 +1,8 @@
+package spring.tutorial.java_annotations;
+
+public interface Coach {
+
+    public String getDailyWorkout();
+
+
+}
