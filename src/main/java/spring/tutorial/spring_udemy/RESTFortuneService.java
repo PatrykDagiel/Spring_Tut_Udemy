@@ -1,5 +1,8 @@
 package spring.tutorial.spring_udemy;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RESTFortuneService implements FortuneService {
 
     @Override
