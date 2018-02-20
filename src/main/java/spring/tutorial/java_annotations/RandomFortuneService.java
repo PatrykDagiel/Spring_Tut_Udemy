@@ -9,7 +9,7 @@ public class RandomFortuneService implements FortuneService {
 
     // create an array of Strings
     private String[] data = {
-        "This is the strign number 1",
+        "This is the string number 1",
         "This is the string number 2",
         "This is the string number 3"
     };
