@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
-@Scope("prototype")
+//@Scope("prototype")
 public class TennisCoach implements Coach {
 
     @Value("${foo.email}")
@@ -29,6 +32,19 @@ public class TennisCoach implements Coach {
     public TennisCoach() {
         System.out.println("Inside default constructor");
     }
+
+    //define my init method
+    @PostConstruct
+    public void doMyStartupStuff() {
+        System.out.println(">>Inside doMyStartupStuff");
+    }
+
+    //define my destroy method
+    @PreDestroy
+    public void doMyCleanupStuff() {
+        System.out.println(">>Inside doMyCleanupStuff");
+    }
+
 
     @Override
     public String getDailyWorkout() {
