@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 public class SportConfig {
 
     @Bean
-    public Coach swimCoach(FortuneService fortuneService) {
-        SwimCoach mySwimCoach = new SwimCoach(happyFortuneService());
+    public Coach swimCoach() {
+        SwimCoach mySwimCoach = new SwimCoach(sadFortuneService());
         return mySwimCoach;
     }
 
     @Bean
-    public FortuneService happyFortuneService() {
-        return new HappyFortuneService();
+    public FortuneService sadFortuneService() {
+        return new SadFortuneService();
     }
 
 }
