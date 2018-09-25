@@ -16,6 +16,9 @@ public class MainDemoApp {
         theAccountDAO.addAccount(theAccount, true);
         theAccountDAO.addAccount(theAccount, false);
 
+        theAccountDAO.setName("foobar");
+        theAccountDAO.setServiceCode("silver");
+
         System.out.printf("Membership DAO \n");
         membershipDAO.addAccount();
 
