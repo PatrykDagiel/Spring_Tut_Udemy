@@ -21,7 +21,7 @@ public class MyDemoLoggingAspect {
 
     @Before("spring.tutorial.AOP.aop.aspect.AoPExpressions.forSetters())")
     public void myCloudAspect() {
-        System.out.println("\n======>>> Perform some cloud work -> SETTER ");
+        System.out.println("\n======>>> Perform some cloud work -> SETTER");
     }
 
 }
