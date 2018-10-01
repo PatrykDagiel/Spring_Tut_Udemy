@@ -3,6 +3,9 @@ package spring.tutorial.AOP.aop.dao;
 import org.springframework.stereotype.Component;
 import spring.tutorial.AOP.aop.demo.Account;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class AccountDAO {
 
@@ -11,6 +14,23 @@ public class AccountDAO {
 
     public void addAccount(Account theAccount, boolean vipFlag) {
         System.out.println(getClass() + " : doing my DB work: Adding and account");
+    }
+
+    // add a new method: findAccounts()
+    public List<Account> findAccounts() {
+        List<Account> myAccounts = new ArrayList<>();
+
+        // create sample accounts
+        Account tempAcc1 = new Account("Temp_1", "Gold");
+        Account tempAcc2 = new Account("Temp_2", "Platinum");
+        Account tempAcc3 = new Account("Temp_3", "Gold");
+
+        // add them to list
+        myAccounts.add(tempAcc1);
+        myAccounts.add(tempAcc2);
+        myAccounts.add(tempAcc3);
+
+        return myAccounts;
     }
 
     public String getName() {
