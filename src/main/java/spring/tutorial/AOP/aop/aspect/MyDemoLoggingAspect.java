@@ -14,6 +14,15 @@ import java.util.List;
 @Order(2)
 public class MyDemoLoggingAspect {
 
+
+    @After("execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))")
+    public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint) {
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("\n Executing : ------> " + method);
+        System.out.println("\n After advice has been applied");
+    }
+
+
     @AfterThrowing(value = "execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
     public void afterThrowingFindAccountsAdvice(JoinPoint theJoinPoint, Throwable theExc) {
         String method = theJoinPoint.getSignature().toShortString();
