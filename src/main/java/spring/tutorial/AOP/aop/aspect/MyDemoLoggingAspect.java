@@ -1,10 +1,7 @@
 package spring.tutorial.AOP.aop.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -16,6 +13,13 @@ import java.util.List;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
+    @AfterThrowing(value = "execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
+    public void afterThrowingFindAccountsAdvice(JoinPoint theJoinPoint, Throwable theExc) {
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("\nMethod is _______: " + method);
+        System.out.println("\n====XX=> The exception is:" + theExc);
+    }
 
     @AfterReturning(pointcut = "execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))", returning = "result")
     public void afterReturningFindAccountsAdvice(JoinPoint theJoinPoint, List<Account> result) {

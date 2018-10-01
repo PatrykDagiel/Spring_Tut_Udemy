@@ -1,5 +1,6 @@
 package spring.tutorial.AOP.aop.dao;
 
+import org.omg.SendingContext.RunTime;
 import org.springframework.stereotype.Component;
 import spring.tutorial.AOP.aop.demo.Account;
 
@@ -17,7 +18,12 @@ public class AccountDAO {
     }
 
     // add a new method: findAccounts()
-    public List<Account> findAccounts() {
+    public List<Account> findAccounts(boolean tripWire) {
+
+        if(tripWire) {
+            throw new RuntimeException("EXCEPTION FROM FIND ACCOUNTS");
+        }
+
         List<Account> myAccounts = new ArrayList<>();
 
         // create sample accounts
