@@ -9,19 +9,21 @@ import org.springframework.stereotype.Component;
 import spring.tutorial.AOP.aop.demo.Account;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Aspect
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
 
-
+    private Logger myLogger = Logger.getLogger(getClass().getName());
+    
     @Around("execution(* spring.tutorial.AOP.aop.service.*.getFortune(..))")
     public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
 
         // print out method we are advising on
         String method = theProceedingJoinPoint.getSignature().toShortString();
-        System.out.println("\n====>>>>>>> Execution @ around on method: " + method);
+        myLogger.info("\n====>>>>>>> Execution @ around on method: " + method);
 
         // get begin/end timestamp
         long begin = System.currentTimeMillis();
@@ -34,7 +36,7 @@ public class MyDemoLoggingAspect {
         long duration = end - begin;
 
         // compute duration and display it
-        System.out.println("\n------->>Duration is: " + duration/1000.0 + " seconds");
+        myLogger.info("\n------->>Duration is: " + duration/1000.0 + " seconds");
 
         return result;
     }
@@ -44,30 +46,30 @@ public class MyDemoLoggingAspect {
     @After("execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))")
     public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint) {
         String method = theJoinPoint.getSignature().toShortString();
-        System.out.println("\n Executing : ------> " + method);
-        System.out.println("\n After advice has been applied");
+        myLogger.info("\n Executing : ------> " + method);
+        myLogger.info("\n After advice has been applied");
     }
 
     @AfterThrowing(value = "execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
     public void afterThrowingFindAccountsAdvice(JoinPoint theJoinPoint, Throwable theExc) {
         String method = theJoinPoint.getSignature().toShortString();
-        System.out.println("\nMethod is _______: " + method);
-        System.out.println("\n====XX=> The exception is:" + theExc);
+        myLogger.info("\nMethod is _______: " + method);
+        myLogger.info("\n====XX=> The exception is:" + theExc);
     }
 
     @AfterReturning(pointcut = "execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))", returning = "result")
     public void afterReturningFindAccountsAdvice(JoinPoint theJoinPoint, List<Account> result) {
         String method = theJoinPoint.getSignature().toShortString();
-        System.out.println("\n======>>> Executing afterReturning on method: " + method);
+        myLogger.info("\n======>>> Executing afterReturning on method: " + method);
 
-        System.out.println("\n ======>>>> result is: " + result);
+        myLogger.info("\n ======>>>> result is: " + result);
 
         // Lets post process the data
 
         // convert the account names to uppercase
         convertAccountNamesToUpperCase(result);
 
-        System.out.println("\n ======>>>> result uppercased is: " + result);
+        myLogger.info("\n ======>>>> result uppercased is: " + result);
 
     }
 
@@ -88,25 +90,25 @@ public class MyDemoLoggingAspect {
 
         // MethodSignature
         MethodSignature methodSig = (MethodSignature) theJoinPoint.getSignature();
-        System.out.println("\nMethod signature: \n" + methodSig);
+        myLogger.info("\nMethod signature: \n" + methodSig);
 
         // display method arguments
 
         Object[] args = theJoinPoint.getArgs();
         for(Object temp : args) {
-            System.out.println("\n The arguments are: " + temp);
+            myLogger.info("\n The arguments are: " + temp.toString());
             if (temp instanceof Account) {
                 Account theAccount = (Account) temp;
 
-                System.out.println("\n Account name is " + theAccount.getName());
-                System.out.println("\n Account level is " + theAccount.getLevel());
+                myLogger.info("\n Account name is " + theAccount.getName());
+                myLogger.info("\n Account level is " + theAccount.getLevel());
             }
         }
     }
 
     @Before("spring.tutorial.AOP.aop.aspect.AoPExpressions.forSetters())")
     public void myCloudAspect() {
-        System.out.println("\n======>>> Perform some cloud work -> SETTER");
+        myLogger.info("\n======>>> Perform some cloud work -> SETTER");
     }
 
 }
