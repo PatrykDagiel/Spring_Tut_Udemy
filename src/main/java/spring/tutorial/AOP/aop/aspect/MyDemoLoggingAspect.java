@@ -28,7 +28,15 @@ public class MyDemoLoggingAspect {
         // get begin/end timestamp
         long begin = System.currentTimeMillis();
 
-        Object result = theProceedingJoinPoint.proceed();
+        Object result = null;
+
+        try {
+            result = theProceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            myLogger.info("We have warning: " + e.getMessage());
+
+            result = "Major accident, your helicopter is on the way!";
+        }
 
         long end = System.currentTimeMillis();
 
@@ -40,7 +48,6 @@ public class MyDemoLoggingAspect {
 
         return result;
     }
-
 
 
     @After("execution(* spring.tutorial.AOP.aop.dao.AccountDAO.findAccounts(..))")
